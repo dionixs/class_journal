@@ -55,15 +55,13 @@ class Subject
       file.readlines.my_map do |line|
         arr = line.split(';')
         id = arr[0].to_i
-        if delete == true
-          line if item.id != id
-        elsif item.id == id
-          "#{id};#{new_name};#{item.klass_id}\n"
-        else
-          line
-        end
-      end.my_find_all { |item| !item.nil? }
+        return_line(item, new_name, id, delete, line)
+      end
     end
+    write_lines(lines.my_find_all { |item| !item.nil? })
+  end
+
+  def self.write_lines(lines)
     File.open(PATH, 'w:UTF-8') do |file|
       lines.my_each_with_index do |line, index|
         arr = line.split(';')
@@ -71,6 +69,16 @@ class Subject
         klass_id = arr[2]&.to_i
         file.puts "#{index + 1};#{name};#{klass_id}\n"
       end
+    end
+  end
+
+  def self.return_line(item, new_name, id, delete, line)
+    if delete == true
+      line if item.id != id
+    elsif item.id == id
+      "#{id};#{new_name};#{item.klass_id}\n"
+    else
+      line
     end
   end
 

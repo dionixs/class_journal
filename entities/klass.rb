@@ -26,14 +26,6 @@ class Klass
     read_file
   end
 
-  def self.dict(items = Klass.all)
-    hh = {}
-    items.my_each do |item|
-      hh[item.id] = item
-    end
-    hh
-  end
-
   def self.show_klasses(items, user_input)
     item = items[user_input.to_i - 1]
     puts "Просмотр учеников класса #{item.name}"
@@ -41,10 +33,14 @@ class Klass
   end
 
   def self.add_class(name)
-    index = Klass.all.my_size == 0 ? 1 : Klass.all.my_size + 1
+    index = line_index
     File.open(PATH, 'a:UTF-8') do |file|
       file.puts "#{index};#{name}"
     end
+  end
+
+  def self.line_index
+    Klass.all.my_size == 0 ? 1 : Klass.all.my_size + 1
   end
 
   def self.edit_class(name, index)
@@ -59,9 +55,9 @@ class Klass
     lines = File.readlines(PATH)
     lines.delete_at(index - 1)
     File.open(PATH, 'w:UTF-8') do |file|
-      lines.my_each_with_index do |line, index|
+      lines.my_each_with_index do |line, i|
         line = line.split(';')
-        file.puts "#{index + 1};#{line[1]}"
+        file.puts "#{i + 1};#{line[1]}"
       end
     end
   end

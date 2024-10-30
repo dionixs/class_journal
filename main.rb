@@ -11,6 +11,11 @@ require_relative './modules/actions'
 require_relative './modules/validate_input'
 require_relative './entities/control'
 
+# TODO:
+# - отрефакторить методы для работы с файлами в сущностях
+# - придумать как отрефакторить метод choice_action в классе Control
+#
+
 control = Control.new
 
 puts 'Добро пожаловать в программу классный журнал!'

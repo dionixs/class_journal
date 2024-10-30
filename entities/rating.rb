@@ -57,15 +57,13 @@ class Rating
       file.readlines.my_map do |line|
         arr = line.split(';')
         id = arr[0].to_i
-        if delete == true
-          line if item.id != id
-        elsif item.id == id
-          "#{id};#{new_grade};#{item.subject_id};#{item.student_id}"
-        else
-          line
-        end
-      end.my_find_all { |item| !item.nil? }
+        return_line(new_grade, line, item, id, delete)
+      end
     end
+    write_lines(lines.my_find_all { |item| !item.nil? })
+  end
+
+  def self.write_lines(lines)
     File.open(PATH, 'w:UTF-8') do |file|
       lines.my_each_with_index do |line, index|
         arr = line.split(';')
@@ -74,6 +72,16 @@ class Rating
         student_id = arr[3].to_i
         file.puts "#{index + 1};#{grade};#{subject_id};#{student_id}"
       end
+    end
+  end
+
+  def self.return_line(new_grade, line, item, id, delete)
+    if delete == true
+      line if item.id != id
+    elsif item.id == id
+      "#{id};#{new_grade};#{item.subject_id};#{item.student_id}"
+    else
+      line
     end
   end
 

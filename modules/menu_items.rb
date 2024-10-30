@@ -6,7 +6,13 @@ module MenuItems
   def self.show_menu_items(items, menu_items)
     items = items.values if items.is_a? Hash
     items += menu_items
-    puts "Выберите вариант от 1 до #{items.size}:"
+
+    if items.first.instance_of?(Rating)
+      puts "Выберите вариант от #{items.size - 3} до #{items.size}:"
+    else
+      puts "Выберите вариант от 1 до #{items.size}:"
+    end
+
     items.my_each_with_index do |item, index|
       if item.instance_of?(Klass)
         puts "\t #{index + 1}. #{item&.name}"
