@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO:
+# применить Enumerator ?
 class Control
   include Actions
   include ValidateInput
@@ -17,7 +19,7 @@ class Control
   end
 
   def show_menu
-    MenuItems.show_menu_items(@items, @menu_items)
+    MenuItems.show_menu_items(@items, @menu_items, @student)
   end
 
   # пока не придумал как отрефакторить этот метод

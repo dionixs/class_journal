@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Subject
+  extend Statistics
+
   attr_accessor :name, :id, :klass_id
 
   PATH = './data/subjects.txt'

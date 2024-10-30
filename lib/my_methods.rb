@@ -28,6 +28,15 @@ class Array
     new_arr
   end
 
+  def my_map_with_index
+    new_arr = []
+
+    my_each_with_index do |item, index|
+      new_arr << yield(item, index)
+    end
+    new_arr
+  end
+
   def my_size
     i = 0
     loop do

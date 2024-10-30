@@ -3,6 +3,7 @@
 require_relative './lib/my_methods'
 require_relative './entities/klass'
 require_relative './entities/student'
+require_relative './modules/statistics'
 require_relative './entities/subject'
 require_relative './entities/rating'
 require_relative './modules/menu_items'
@@ -12,9 +13,8 @@ require_relative './modules/validate_input'
 require_relative './entities/control'
 
 # TODO:
-# - отрефакторить методы для работы с файлами в сущностях
 # - придумать как отрефакторить метод choice_action в классе Control
-#
+# - придумать как отрефакторить метод show_menu_items в модуле MenuItems
 
 control = Control.new
 
