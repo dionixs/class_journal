@@ -8,7 +8,8 @@ class Subject
   MENU_ITEMS = [
     'Добавить предмет',
     'Редактировать предмет',
-    'Удалить предмет'
+    'Удалить предмет',
+    'Назад'
   ].freeze
 
   def self.read_file(path = PATH)

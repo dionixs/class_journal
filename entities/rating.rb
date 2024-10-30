@@ -9,7 +9,8 @@ class Rating
   MENU_ITEMS = [
     'Добавить оценку',
     'Редактировать оценку',
-    'Удалить оценку'
+    'Удалить оценку',
+    'Назад'
   ].freeze
 
   def self.read_file(path = PATH)

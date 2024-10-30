@@ -78,4 +78,8 @@ module ValidateInput
   def valid_input?
     @input.to_i > 0 && @input.to_i <= @items.length
   end
+
+  def backward?
+    @items.size + 4 == @input.to_i
+  end
 end

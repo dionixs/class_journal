@@ -8,7 +8,8 @@ class Student
   MENU_ITEMS = [
     'Добавить ученика',
     'Редактировать ученика',
-    'Удалить ученика'
+    'Удалить ученика',
+    'Назад'
   ].freeze
 
   def self.read_file(path = PATH)

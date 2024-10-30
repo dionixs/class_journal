@@ -7,6 +7,7 @@ require_relative './entities/subject'
 require_relative './entities/rating'
 require_relative './modules/menu_items'
 require_relative './modules/input_handler'
+require_relative './modules/actions'
 require_relative './modules/validate_input'
 require_relative './entities/control'
 
@@ -28,10 +29,3 @@ begin
 rescue Interrupt
   puts
 end
-
-# TODO:
-# - Cделать обработку ошибок
-# - Сделать рефакторинг этого безобразия и всего проекта в целом
-# TODO: Сделать возможность вернуться назад в меню
-#   # nesting -= 0 if user_input == 'prev' && nesting != 0
-#
