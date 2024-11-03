@@ -24,9 +24,11 @@ class Control
 
   # пока не придумал как отрефакторить этот метод
   # кроме способа с использованием send
-  #
   # есть идея сделать разные сущности
   # для каждого типа действий, но пока думаю над тем как лучше сделать
+  #
+  # возникла идея отрефакторить применяя вот такой способ:
+  # https://stackoverflow.com/questions/13948910/ruby-methods-as-array-elements-how-do-they-work
   def choice_action(input)
     @input = input
     if show_students?
