@@ -1,12 +1,29 @@
 # frozen_string_literal: true
 
-# TODO:
-# применить Enumerator ?
 class Control
   include Actions
   include ValidateInput
 
   attr_accessor :items, :menu_items, :nesting
+
+  ACTIONS = {
+    show_students?: :show_students,
+    show_subjects?: :show_subjects,
+    show_rating?: :show_ratings,
+    add_class?: :add_class,
+    add_student?: :add_student,
+    add_subject?: :add_subject,
+    add_rating?: :add_rating,
+    edit_class?: :edit_class,
+    edit_student?: :edit_student,
+    edit_subject?: :edit_subject,
+    edit_rating?: :edit_rating,
+    delete_klass?: :delete_klass,
+    delete_student?: :delete_student,
+    delete_subject?: :delete_subject,
+    delete_rating?: :delete_rating,
+    backward?: :backward
+  }.freeze
 
   def initialize
     @items = Klass.all
@@ -31,40 +48,10 @@ class Control
   # https://stackoverflow.com/questions/13948910/ruby-methods-as-array-elements-how-do-they-work
   def choice_action(input)
     @input = input
-    if show_students?
-      show_students
-    elsif show_subjects?
-      show_subjects
-    elsif show_rating?
-      show_ratings
-    elsif add_class?
-      add_class
-    elsif add_student?
-      add_student
-    elsif add_subject?
-      add_subject
-    elsif add_rating?
-      add_rating
-    elsif edit_class?
-      edit_class
-    elsif edit_student?
-      edit_student
-    elsif edit_subject?
-      edit_subject
-    elsif edit_rating?
-      edit_rating
-    elsif delete_klass?
-      delete_klass
-    elsif delete_student?
-      delete_student
-    elsif delete_subject?
-      delete_subject
-    elsif delete_rating?
-      delete_rating
-    elsif backward?
-      backward
-    else
-      raise StandardError, 'Введено не валидное значение!'
-    end
+    action = ACTIONS.find { |condition, _| send(condition) }
+
+    raise StandardError, 'Введено не валидное значение!' unless action
+
+    send(action.last)
   end
 end
